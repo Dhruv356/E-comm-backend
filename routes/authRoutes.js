@@ -33,7 +33,7 @@ router.post("/signup", async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({ name, email, password, role });
+    const newUser = new User({ name, email, password:hashedPassword, role });
 
     await newUser.save();
     
@@ -71,7 +71,7 @@ router.post("/login", async (req, res) => {
     if (!isMatch) return res.status(400).json({ message: "Incorrect password" });
 
     const token = jwt.sign(
-      { userId: user._id, role: user.role },
+      { userId: user._id, role: user.role ,name:user.name},
       getJwtSecret(),
       { expiresIn: "1h" }
     );

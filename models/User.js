@@ -4,7 +4,17 @@ const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  role: { type: String, enum: ["user", "admin"], default: "user" },
+  // sellerRequest: {
+  //   type: String,
+  //   enum: ['none', 'pending', 'approved', 'rejected'],
+  //   default: 'none',
+  // },
+  role: {
+    type: String,
+    enum: ['user', 'seller', 'admin'],
+    default: 'user',
+  },
+  
   profileImage: { type: String, default: "" },
   address: { type: String, default: "" },
   phoneNumber: { type: String, default: "" },

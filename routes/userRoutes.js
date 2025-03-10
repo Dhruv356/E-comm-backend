@@ -55,5 +55,20 @@ router.post("/update-shipping-address", authMiddleware, async (req, res) => {
   await User.findByIdAndUpdate(req.userId, { shippingAddress });
   res.json({ message: "Shipping address updated successfully" });
 });
+// router.post('/request-seller', authMiddleware, async (req, res) => {
+//   const user = await User.findById(req.userId);
 
+//   if (user.role !== 'user') {
+//     return res.status(400).json({ message: 'You are already a seller or admin.' });
+//   }
+
+//   if (user.sellerRequest === 'pending') {
+//     return res.status(400).json({ message: 'Request already pending.' });
+//   }
+
+//   user.sellerRequest = 'pending';
+//   await user.save();
+
+//   res.json({ message: 'Seller request submitted successfully.' });
+// });
 module.exports = router;
